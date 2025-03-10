@@ -14,13 +14,19 @@ function myFunction(fileName) {
   })
 
   let finalOutput = "";
-  for (let i = 0; i < capitalizeSplitWords.length; i++) {
+  let i = 0;
+  for (i = 0; i < capitalizeSplitWords.length; i++) {
     if ((i % 2 == 0) && (i !== 0)) {
+      finalOutput = finalOutput.slice(0, -1); //remove space before newline
       finalOutput += "\n"
     }
     finalOutput += capitalizeSplitWords[i] + " ";
   }
-  fs.writeFile(fileName, finalOutput, "utf-8", function (err) {
+  if (i = capitalizeSplitWords.length) {  //remove unnecessary space at end of file
+    finalOutput = finalOutput.slice(0, -1);
+  }
+
+  fs.writeFileSync(fileName, finalOutput, "utf-8", function (err) {
     if (err) throw err;
   });
 }
